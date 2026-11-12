@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADMIN - SHOP SAMM X MODZ VIP</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif}
+:root{--pink:#ff006e;--purple:#8338ec;--blue:#3a86ff;--cyan:#06d6a0;--yellow:#ffbe0b;--bg:#08080f;--card:#13131f;--border:#2a2a4a}
+body{background:var(--bg);color:#fff;min-height:100vh;overflow-x:hidden;position:relative}
+.bg-glow{position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 15% 20%,#ff006e22 0%,transparent 40%),radial-gradient(circle at 85% 70%,#8338ec22 0%,transparent 40%),radial-gradient(circle at 50% 100%,#3a86ff22 0%,transparent 50%);animation:pulse 8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+header{background:linear-gradient(135deg,#13131fcc,#1a1a2ecc);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;position:sticky;top:0;z-index:100}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-icon{font-size:2rem;filter:drop-shadow(0 0 10px var(--pink));animation:spin 4s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.logo h1{font-size:1.4rem;background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:2px}
+.logo small{font-size:.7rem;color:var(--yellow);letter-spacing:4px}
+nav{display:flex;gap:8px;flex-wrap:wrap}
+.nav-btn{background:#1a1a2e;color:#fff;border:1px solid var(--border);padding:8px 16px;border-radius:10px;cursor:pointer;font-size:.9rem;text-decoration:none;transition:.3s;font-weight:500}
+.nav-btn:hover{border-color:var(--purple);box-shadow:0 0 12px var(--purple)}
+main{max-width:1200px;margin:30px auto;padding:0 20px}
+.section-title{font-size:1.5rem;margin-bottom:20px;background:linear-gradient(90deg,var(--yellow),var(--pink));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+label{display:block;font-size:.85rem;color:#aaa;margin:12px 0 6px;font-weight:500}
+input,textarea{width:100%;padding:12px 16px;border-radius:10px;border:1px solid var(--border);background:#0d0d18;color:#fff;font-size:.95rem;outline:none;transition:.3s;font-family:inherit}
+input:focus,textarea:focus{border-color:var(--purple);box-shadow:0 0 15px #8338ec55}
+.btn-main{width:100%;padding:12px 20px;border-radius:10px;border:none;cursor:pointer;font-weight:700;font-size:.95rem;color:#fff;background:linear-gradient(135deg,var(--pink),var(--purple));transition:.3s;margin-top:15px}
+.btn-main:hover{transform:scale(1.02);box-shadow:0 5px 20px #8338ec88}
+.auth-msg{margin-top:12px;font-size:.9rem;color:var(--cyan);min-height:20px}
+.admin-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:24px;margin-bottom:30px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.form-row{grid-template-columns:1fr}}
+.admin-box input[type=file]{background:transparent;border:1px dashed var(--purple);padding:12px}
+.admin-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:12px;display:flex;gap:14px;align-items:center;transition:.3s}
+.admin-item:hover{border-color:var(--purple)}
+.thumb{width:60px;height:60px;border-radius:10px;object-fit:cover;background:#0d0d18;flex-shrink:0}
+.noimg-sm{display:flex;align-items:center;justify-content:center;font-size:1.8rem}
+.admin-info{flex:1;min-width:0}
+.admin-info b{color:var(--yellow)}
+.admin-info p{font-size:.8rem;color:#999;margin-top:2px}
+.small{font-size:.75rem;color:#666}
+.admin-actions{display:flex;gap:6px;flex-shrink:0}
+.btn-small{padding:6px 12px;border-radius:8px;border:1px solid var(--border);background:#1a1a2e;color:#fff;text-decoration:none;cursor:pointer;font-size:.8rem;transition:.3s;display:inline-block}
+.btn-small:hover{border-color:var(--purple);box-shadow:0 0 10px #8338ec55}
+.btn-danger-sm{background:linear-gradient(135deg,#d00000,#ff006e);border:none}
+.gate{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.gate-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px;width:100%;max-width:400px;box-shadow:0 20px 60px #00000088}
+.gate-box h2{text-align:center;margin-bottom:20px}
+.gate-box input{margin-bottom:12px}
+.back-link{display:block;text-align:center;margin-top:16px;color:#888;text-decoration:none;font-size:.9rem}
+.back-link:hover{color:var(--purple)}
+.empty{text-align:center;color:#666;padding:40px 20px;font-size:1.1rem}
+@media(max-width:600px){header{flex-direction:column;align-items:flex-start}.admin-item{flex-wrap:wrap}.admin-actions{width:100%;justify-content:flex-end}}
+</style>
+</head>
+<body>
+<div class="bg-glow"></div>
+
+<!-- LOGIN GATE -->
+<div id="gate" class="gate">
+  <div class="gate-box">
+    <h2>🔐 ADMIN LOGIN</h2>
+    <input type="text" id="gUser" placeholder="Tên đăng nhập admin">
+    <input type="password" id="gPass" placeholder="Mật khẩu">
+    <button class="btn-main" onclick="gateLogin()">Vào Admin</button>
+    <p id="gateMsg" class="auth-msg"></p>
+    <a href="index.html" class="back-link">← Về trang chủ</a>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel" style="display:none">
+<header>
+  <div class="logo">
+    <span class="logo-icon">⚙️</span>
+    <div><h1>ADMIN PANEL</h1><small>SAMM X MODZ VIP</small></div>
+  </div>
+  <nav>
+    <a href="index.html" class="nav-btn">🏠 Về shop</a>
+    <button class="nav-btn" onclick="logoutAdmin()">🚪 Thoát</button>
+  </nav>
+</header>
+
+<main>
+  <section class="admin-box">
+    <h2 class="section-title">➕ Thêm File Mới</h2>
+    <form id="uploadForm">
+      <div class="form-row">
+        <div>
+          <label>Tên hiển thị *</label>
+          <input type="text" name="name" placeholder="VD: Mod Menu VIP" required>
+        </div>
+        <div>
+          <label>Mô tả</label>
+          <input type="text" name="description" placeholder="Mô tả ngắn...">
+        </div>
+      </div>
+      <label>File tải lên *</label>
+      <input type="file" name="fileData" required>
+      <label>Ảnh đại diện (từ thư viện ảnh)</label>
+      <input type="file" name="image" accept="image/*">
+      <button type="submit" class="btn-main">🚀 UPLOAD FILE</button>
+      <p id="msg" class="auth-msg"></p>
+    </form>
+  </section>
+
+  <section>
+    <h2 class="section-title">📋 Quản lý File (<span id="fileCount">0</span>)</h2>
+    <div id="adminList"></div>
+  </section>
+</main>
+</div>
+
+<script>
+const adminSession = JSON.parse(localStorage.getItem('adminSession') || 'null');
+if (adminSession) showPanel();
+
+async function gateLogin() {
+  const username = document.getElementById('gUser').value;
+  const password = document.getElementById('gPass').value;
+  const res = await fetch('/api/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, password })
+  });
+  const data = await res.json();
+  if (data.ok && data.role === 'admin') {
+    localStorage.setItem('adminSession', JSON.stringify(data));
+    showPanel();
+  } else {
+    document.getElementById('gateMsg').textContent = '❌ Sai tài khoản hoặc không phải admin';
+  }
+}
+
+function showPanel() {
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('adminPanel').style.display = 'block';
+  loadAdminList();
+}
+
+function logoutAdmin() {
+  localStorage.removeItem('adminSession');
+  location.reload();
+}
+
+document.getElementById('uploadForm').onsubmit = async e => {
+  e.preventDefault();
+  const form = new FormData(e.target);
+  const res = await fetch('/api/upload', { method: 'POST', body: form });
+  const data = await res.json();
+  document.getElementById('msg').textContent = data.id ? '✅ Upload thành công!' : '❌ Lỗi: ' + (data.error || '');
+  if (data.id) { e.target.reset(); loadAdminList(); }
+};
+
+async function loadAdminList() {
+  const res = await fetch('/api/files');
+  const files = await res.json();
+  document.getElementById('fileCount').textContent = files.length;
+  document.getElementById('adminList').innerHTML = files.map(f => `
+    <div class="admin-item">
+      ${f.imageUrl ? `<img src="${f.imageUrl}" class="thumb">` : '<div class="thumb noimg-sm">📦</div>'}
+      <div class="admin-info">
+        <b>${f.name}</b>
+        <p>${f.fileName} • ⬇ ${f.downloads || 0} lượt tải</p>
+        <p class="small">📅 ${new Date(f.createdAt).toLocaleString('vi-VN')}</p>
+      </div>
+      <div class="admin-actions">
+        <a href="${f.fileUrl}" target="_blank" class="btn-small">👁 Xem</a>
+        <button class="btn-small btn-danger-sm" onclick="delFile(${f.id})">🗑 Xóa</button>
+      </div>
+    </div>
+  `).join('') || '<p class="empty">Chưa có file nào.</p>';
+}
+
+async function delFile(id) {
+  if (!confirm('Xóa file này?')) return;
+  await fetch('/api/files/' + id, { method: 'DELETE' });
+  loadAdminList();
+}
+</script>
+</body>
+</html>
