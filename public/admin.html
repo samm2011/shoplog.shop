@@ -20,29 +20,40 @@ nav{display:flex;gap:8px;flex-wrap:wrap}
 .nav-btn{background:#1a1a2e;color:#fff;border:1px solid var(--border);padding:8px 16px;border-radius:10px;cursor:pointer;font-size:.9rem;text-decoration:none;transition:.3s;font-weight:500}
 .nav-btn:hover{border-color:var(--purple);box-shadow:0 0 12px var(--purple)}
 main{max-width:1200px;margin:30px auto;padding:0 20px}
-.section-title{font-size:1.5rem;margin-bottom:20px;background:linear-gradient(90deg,var(--yellow),var(--pink));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.section-title{font-size:1.5rem;margin-bottom:20px;background:linear-gradient(90deg,var(--yellow),var(--pink));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
 label{display:block;font-size:.85rem;color:#aaa;margin:12px 0 6px;font-weight:500}
-input,textarea{width:100%;padding:12px 16px;border-radius:10px;border:1px solid var(--border);background:#0d0d18;color:#fff;font-size:.95rem;outline:none;transition:.3s;font-family:inherit}
-input:focus,textarea:focus{border-color:var(--purple);box-shadow:0 0 15px #8338ec55}
+input,textarea,select{width:100%;padding:12px 16px;border-radius:10px;border:1px solid var(--border);background:#0d0d18;color:#fff;font-size:.95rem;outline:none;transition:.3s;font-family:inherit}
+input:focus,textarea:focus,select:focus{border-color:var(--purple);box-shadow:0 0 15px #8338ec55}
 .btn-main{width:100%;padding:12px 20px;border-radius:10px;border:none;cursor:pointer;font-weight:700;font-size:.95rem;color:#fff;background:linear-gradient(135deg,var(--pink),var(--purple));transition:.3s;margin-top:15px}
 .btn-main:hover{transform:scale(1.02);box-shadow:0 5px 20px #8338ec88}
+.btn-small{padding:6px 12px;border-radius:8px;border:1px solid var(--border);background:#1a1a2e;color:#fff;text-decoration:none;cursor:pointer;font-size:.8rem;transition:.3s;display:inline-block}
+.btn-small:hover{border-color:var(--purple);box-shadow:0 0 10px #8338ec55}
+.btn-danger-sm{background:linear-gradient(135deg,#d00000,#ff006e);border:none;color:#fff}
 .auth-msg{margin-top:12px;font-size:.9rem;color:var(--cyan);min-height:20px}
 .admin-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:24px;margin-bottom:30px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:600px){.form-row{grid-template-columns:1fr}}
 .admin-box input[type=file]{background:transparent;border:1px dashed var(--purple);padding:12px}
+.divider{text-align:center;color:#888;font-size:.85rem;margin:16px 0;position:relative}
+.divider::before,.divider::after{content:'';position:absolute;top:50%;width:40%;height:1px;background:var(--border)}
+.divider::before{left:0}.divider::after{right:0}
+
 .admin-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:12px;display:flex;gap:14px;align-items:center;transition:.3s}
 .admin-item:hover{border-color:var(--purple)}
-.thumb{width:60px;height:60px;border-radius:10px;object-fit:cover;background:#0d0d18;flex-shrink:0}
-.noimg-sm{display:flex;align-items:center;justify-content:center;font-size:1.8rem}
+/* SỬA LỖI ẢNH NHỎ TRONG ADMIN: Dùng object-fit: contain */
+.thumb{width:80px;height:80px;border-radius:10px;object-fit:contain;background:#0d0d18;flex-shrink:0;padding:5px}
+.noimg-sm{display:flex;align-items:center;justify-content:center;font-size:2rem}
 .admin-info{flex:1;min-width:0}
 .admin-info b{color:var(--yellow)}
-.admin-info p{font-size:.8rem;color:#999;margin-top:2px}
+.admin-info p{font-size:.8rem;color:#999;margin-top:2px;word-break:break-all}
 .small{font-size:.75rem;color:#666}
-.admin-actions{display:flex;gap:6px;flex-shrink:0}
-.btn-small{padding:6px 12px;border-radius:8px;border:1px solid var(--border);background:#1a1a2e;color:#fff;text-decoration:none;cursor:pointer;font-size:.8rem;transition:.3s;display:inline-block}
-.btn-small:hover{border-color:var(--purple);box-shadow:0 0 10px #8338ec55}
-.btn-danger-sm{background:linear-gradient(135deg,#d00000,#ff006e);border:none}
+.admin-actions{display:flex;gap:6px;flex-shrink:0;flex-wrap:wrap}
+
+.visitor-box{max-height:400px;overflow-y:auto;background:#0d0d18;border:1px solid var(--border);border-radius:12px;padding:10px}
+.visitor-item{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:10px;border-bottom:1px solid var(--border);font-size:0.85rem}
+.visitor-item:last-child{border:none}
+.visitor-item span{color:var(--cyan)}
+.visitor-item small{color:#888;word-break:break-all;flex:1;min-width:200px}
 .gate{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
 .gate-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px;width:100%;max-width:400px;box-shadow:0 20px 60px #00000088}
 .gate-box h2{text-align:center;margin-bottom:20px}
@@ -50,13 +61,12 @@ input:focus,textarea:focus{border-color:var(--purple);box-shadow:0 0 15px #8338e
 .back-link{display:block;text-align:center;margin-top:16px;color:#888;text-decoration:none;font-size:.9rem}
 .back-link:hover{color:var(--purple)}
 .empty{text-align:center;color:#666;padding:40px 20px;font-size:1.1rem}
-@media(max-width:600px){header{flex-direction:column;align-items:flex-start}.admin-item{flex-wrap:wrap}.admin-actions{width:100%;justify-content:flex-end}}
+@media(max-width:600px){header{flex-direction:column;align-items:flex-start}.admin-item{flex-wrap:wrap}.admin-actions{width:100%;justify-content:flex-end}.thumb{width:100%;height:120px}}
 </style>
 </head>
 <body>
 <div class="bg-glow"></div>
 
-<!-- LOGIN GATE -->
 <div id="gate" class="gate">
   <div class="gate-box">
     <h2>🔐 ADMIN LOGIN</h2>
@@ -68,7 +78,6 @@ input:focus,textarea:focus{border-color:var(--purple);box-shadow:0 0 15px #8338e
   </div>
 </div>
 
-<!-- ADMIN PANEL -->
 <div id="adminPanel" style="display:none">
 <header>
   <div class="logo">
@@ -88,25 +97,64 @@ input:focus,textarea:focus{border-color:var(--purple);box-shadow:0 0 15px #8338e
       <div class="form-row">
         <div>
           <label>Tên hiển thị *</label>
-          <input type="text" name="name" placeholder="VD: Mod Menu VIP" required>
+          <input type="text" name="name" placeholder="VD: MOD FFM VIP" required>
         </div>
         <div>
           <label>Mô tả</label>
           <input type="text" name="description" placeholder="Mô tả ngắn...">
         </div>
       </div>
-      <label>File tải lên *</label>
-      <input type="file" name="fileData" required>
-      <label>Ảnh đại diện (từ thư viện ảnh)</label>
-      <input type="file" name="image" accept="image/*">
-      <button type="submit" class="btn-main">🚀 UPLOAD FILE</button>
+
+      <!-- PHẦN CHỌN NGUỒN FILE -->
+      <label>Nguồn File (Chọn 1 trong 2):</label>
+      <select id="fileSourceSelect" style="margin-bottom:10px" onchange="toggleFileSource()">
+        <option value="local">📁 Tải file lên từ máy (Sẽ mất khi Render reset)</option>
+        <option value="external">🔗 Dán link từ ngoài (Drive, Dropbox, v.v...)</option>
+      </select>
+
+      <div id="localFileBox">
+        <input type="file" name="fileData" id="fileDataInput">
+      </div>
+
+      <div id="externalLinkBox" style="display:none">
+        <input type="url" name="externalLink" id="externalLinkInput" placeholder="https://drive.google.com/...">
+      </div>
+      <!-- KẾT THÚC PHẦN CHỌN NGUỒN -->
+
+      <div class="divider">Ảnh đại diện</div>
+      <label>Ảnh (Chọn 1 trong 2):</label>
+      <select id="imgSourceSelect" style="margin-bottom:10px" onchange="toggleImgSource()">
+        <option value="local">📷 Tải ảnh lên từ máy</option>
+        <option value="external">🔗 Dán link ảnh từ ngoài (VD: link ảnh thẻ)</option>
+      </select>
+
+      <div id="localImgBox">
+        <input type="file" name="image" id="imageInput" accept="image/*">
+      </div>
+
+      <div id="externalImgBox" style="display:none">
+        <input type="url" name="externalImage" id="externalImageInput" placeholder="https://.../anh.jpg">
+      </div>
+
+      <button type="submit" class="btn-main">🚀 THÊM FILE</button>
       <p id="msg" class="auth-msg"></p>
     </form>
   </section>
 
   <section>
-    <h2 class="section-title">📋 Quản lý File (<span id="fileCount">0</span>)</h2>
+    <h2 class="section-title">
+      📋 Quản lý File (<span id="fileCount">0</span>)
+      <button class="btn-small" onclick="loadAdminList()">🔄 Làm mới</button>
+    </h2>
     <div id="adminList"></div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2 class="section-title">
+      👀 Lịch sử truy cập
+      <button class="btn-small" onclick="loadVisitors()">🔄 Làm mới</button>
+    </h2>
+    <div id="visitorList" class="visitor-box"></div>
   </section>
 </main>
 </div>
@@ -114,6 +162,22 @@ input:focus,textarea:focus{border-color:var(--purple);box-shadow:0 0 15px #8338e
 <script>
 const adminSession = JSON.parse(localStorage.getItem('adminSession') || 'null');
 if (adminSession) showPanel();
+
+function toggleFileSource() {
+  const val = document.getElementById('fileSourceSelect').value;
+  document.getElementById('localFileBox').style.display = val === 'local' ? 'block' : 'none';
+  document.getElementById('externalLinkBox').style.display = val === 'external' ? 'block' : 'none';
+  if (val === 'local') document.getElementById('externalLinkInput').value = '';
+  else document.getElementById('fileDataInput').value = '';
+}
+
+function toggleImgSource() {
+  const val = document.getElementById('imgSourceSelect').value;
+  document.getElementById('localImgBox').style.display = val === 'local' ? 'block' : 'none';
+  document.getElementById('externalImgBox').style.display = val === 'external' ? 'block' : 'none';
+  if (val === 'local') document.getElementById('externalImageInput').value = '';
+  else document.getElementById('imageInput').value = '';
+}
 
 async function gateLogin() {
   const username = document.getElementById('gUser').value;
@@ -136,6 +200,7 @@ function showPanel() {
   document.getElementById('gate').style.display = 'none';
   document.getElementById('adminPanel').style.display = 'block';
   loadAdminList();
+  loadVisitors();
 }
 
 function logoutAdmin() {
@@ -146,10 +211,46 @@ function logoutAdmin() {
 document.getElementById('uploadForm').onsubmit = async e => {
   e.preventDefault();
   const form = new FormData(e.target);
+  
+  const fileSource = document.getElementById('fileSourceSelect').value;
+  const extLink = form.get('externalLink');
+  const localFile = form.get('fileData');
+
+  // Kiểm tra đầu vào
+  if (fileSource === 'local' && (!localFile || localFile.size === 0)) {
+    document.getElementById('msg').textContent = '❌ Vui lòng chọn file tải lên!';
+    return;
+  }
+  if (fileSource === 'external' && !extLink) {
+    document.getElementById('msg').textContent = '❌ Vui lòng dán link file!';
+    return;
+  }
+
+  // Xử lý ảnh
+  const imgSource = document.getElementById('imgSourceSelect').value;
+  const extImg = form.get('externalImage');
+  
+  if (imgSource === 'external' && extImg) {
+    // Nếu chọn ảnh từ ngoài, gửi dữ liệu dạng JSON thay vì FormData (trừ khi có file đính kèm)
+    if (fileSource === 'local') {
+       // Trường hợp có File tải lên nhưng ảnh từ ngoài -> Gửi qua FormData và server sẽ xử lý
+       form.append('imageUrl', extImg);
+    }
+  }
+
+  // Gửi request
   const res = await fetch('/api/upload', { method: 'POST', body: form });
   const data = await res.json();
-  document.getElementById('msg').textContent = data.id ? '✅ Upload thành công!' : '❌ Lỗi: ' + (data.error || '');
-  if (data.id) { e.target.reset(); loadAdminList(); }
+  
+  if (data.id || data.ok) {
+    document.getElementById('msg').textContent = '✅ Đã thêm file thành công!';
+    e.target.reset();
+    toggleFileSource();
+    toggleImgSource();
+    loadAdminList();
+  } else {
+    document.getElementById('msg').textContent = '❌ Lỗi: ' + (data.error || '');
+  }
 };
 
 async function loadAdminList() {
@@ -158,18 +259,30 @@ async function loadAdminList() {
   document.getElementById('fileCount').textContent = files.length;
   document.getElementById('adminList').innerHTML = files.map(f => `
     <div class="admin-item">
-      ${f.imageUrl ? `<img src="${f.imageUrl}" class="thumb">` : '<div class="thumb noimg-sm">📦</div>'}
+      ${f.imageUrl ? `<img src="${f.imageUrl}" class="thumb" alt="${f.name}">` : '<div class="thumb noimg-sm">📦</div>'}
       <div class="admin-info">
         <b>${f.name}</b>
-        <p>${f.fileName} • ⬇ ${f.downloads || 0} lượt tải</p>
+        <p>📁 ${f.fileName || 'Link ngoài'} • ⬇ ${f.downloads || 0} lượt tải</p>
+        <p class="small" style="color:var(--cyan)">🔗 <a href="${f.fileUrl}" target="_blank" style="color:inherit;text-decoration:underline">${f.fileUrl}</a></p>
         <p class="small">📅 ${new Date(f.createdAt).toLocaleString('vi-VN')}</p>
       </div>
       <div class="admin-actions">
-        <a href="${f.fileUrl}" target="_blank" class="btn-small">👁 Xem</a>
         <button class="btn-small btn-danger-sm" onclick="delFile(${f.id})">🗑 Xóa</button>
       </div>
     </div>
   `).join('') || '<p class="empty">Chưa có file nào.</p>';
+}
+
+async function loadVisitors() {
+  const res = await fetch('/api/visitors');
+  const visitors = await res.json();
+  document.getElementById('visitorList').innerHTML = visitors.map(v => `
+    <div class="visitor-item">
+      <span>🌐 IP: ${v.ip}</span>
+      <small>💻 ${v.device}</small>
+      <span>🕒 ${new Date(v.time).toLocaleString('vi-VN')}</span>
+    </div>
+  `).join('') || '<p class="empty">Chưa có ai truy cập.</p>';
 }
 
 async function delFile(id) {
