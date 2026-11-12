@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHOP SAMM X MODZ VIP</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif}
+:root{--pink:#ff006e;--purple:#8338ec;--blue:#3a86ff;--cyan:#06d6a0;--yellow:#ffbe0b;--bg:#08080f;--card:#13131f;--card2:#1a1a2e;--border:#2a2a4a}
+body{background:var(--bg);color:#fff;min-height:100vh;overflow-x:hidden;position:relative}
+.bg-glow{position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 15% 20%,#ff006e22 0%,transparent 40%),radial-gradient(circle at 85% 70%,#8338ec22 0%,transparent 40%),radial-gradient(circle at 50% 100%,#3a86ff22 0%,transparent 50%);animation:pulse 8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+header{background:linear-gradient(135deg,#13131fcc,#1a1a2ecc);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;position:sticky;top:0;z-index:100}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-icon{font-size:2rem;filter:drop-shadow(0 0 10px var(--pink));animation:spin 4s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.logo h1{font-size:1.4rem;background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:2px}
+.logo small{font-size:.7rem;color:var(--yellow);letter-spacing:4px}
+nav{display:flex;gap:8px;flex-wrap:wrap}
+.nav-btn{background:#1a1a2e;color:#fff;border:1px solid var(--border);padding:8px 16px;border-radius:10px;cursor:pointer;font-size:.9rem;text-decoration:none;transition:.3s;font-weight:500}
+.nav-btn:hover{border-color:var(--purple);box-shadow:0 0 12px var(--purple)}
+.nav-btn.active{background:linear-gradient(135deg,var(--pink),var(--purple));border-color:transparent;box-shadow:0 0 15px #8338ec88}
+main{max-width:1200px;margin:30px auto;padding:0 20px;min-height:60vh}
+.tab{display:none}
+.tab.active{display:block;animation:fadeIn .4s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.section-title{font-size:1.5rem;margin-bottom:20px;background:linear-gradient(90deg,var(--yellow),var(--pink));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero{background:linear-gradient(135deg,#13131f,#1a1a2e);border:1px solid var(--border);border-radius:20px;padding:40px 30px;text-align:center;margin-bottom:30px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:-50%;background:conic-gradient(from 0deg,var(--pink),var(--purple),var(--blue),var(--pink));opacity:.08;animation:rotate 6s linear infinite}
+@keyframes rotate{to{transform:rotate(360deg)}}
+.hero h2{font-size:2rem;margin-bottom:10px;position:relative}
+.hero p{color:#aaa;margin-bottom:20px;position:relative}
+.search{width:100%;max-width:500px;padding:14px 20px;border-radius:30px;border:1px solid var(--border);background:#0d0d18;color:#fff;font-size:1rem;outline:none;position:relative;transition:.3s}
+.search:focus{border-color:var(--purple);box-shadow:0 0 20px #8338ec55}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:.4s;position:relative}
+.card::before{content:'';position:absolute;inset:0;border-radius:16px;padding:1px;background:linear-gradient(135deg,var(--pink),var(--purple),var(--blue));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:.4s;pointer-events:none}
+.card:hover{transform:translateY(-6px);box-shadow:0 10px 40px #8338ec55}
+.card:hover::before{opacity:1}
+.card img{width:100%;height:160px;object-fit:cover;background:#0d0d18}
+.card .noimg{height:160px;display:flex;align-items:center;justify-content:center;font-size:3rem;background:#0d0d18}
+.card-body{padding:16px}
+.card h3{font-size:1.1rem;margin-bottom:8px;background:linear-gradient(90deg,var(--yellow),var(--pink));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.card p{font-size:.85rem;color:#999;margin-bottom:10px;line-height:1.4}
+.card-meta{font-size:.75rem;color:var(--cyan);margin-bottom:12px}
+.empty{text-align:center;color:#666;padding:40px 20px;font-size:1.1rem;grid-column:1/-1}
+.btn-main{width:100%;padding:12px 20px;border-radius:10px;border:none;cursor:pointer;font-weight:700;font-size:.95rem;color:#fff;background:linear-gradient(135deg,var(--pink),var(--purple));transition:.3s;text-align:center}
+.btn-main:hover{transform:scale(1.02);box-shadow:0 5px 20px #8338ec88}
+.btn-danger{background:linear-gradient(135deg,#d00000,#ff006e);color:#fff;border:none;padding:10px 20px;border-radius:10px;cursor:pointer;font-weight:600;transition:.3s}
+.btn-danger:hover{box-shadow:0 5px 20px #ff006e88}
+.auth-box,.profile-box{max-width:500px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:30px;box-shadow:0 10px 40px #00000066}
+.auth-tabs{display:flex;gap:8px;margin-bottom:20px;background:#0d0d18;padding:5px;border-radius:12px}
+.auth-tab{flex:1;padding:10px;border:none;background:transparent;color:#888;cursor:pointer;border-radius:8px;font-weight:600;transition:.3s}
+.auth-tab.active{background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff}
+.auth-form{display:none}
+.auth-form.active{display:block;animation:fadeIn .3s}
+label{display:block;font-size:.85rem;color:#aaa;margin:12px 0 6px;font-weight:500}
+input,textarea{width:100%;padding:12px 16px;border-radius:10px;border:1px solid var(--border);background:#0d0d18;color:#fff;font-size:.95rem;outline:none;transition:.3s;font-family:inherit}
+input:focus,textarea:focus{border-color:var(--purple);box-shadow:0 0 15px #8338ec55}
+.auth-msg{margin-top:12px;font-size:.9rem;color:var(--cyan);min-height:20px}
+.profile-card{text-align:center;padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:20px}
+.avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--purple));display:flex;align-items:center;justify-content:center;font-size:2.5rem;margin:0 auto 12px;box-shadow:0 0 30px #8338ec88}
+.profile-card h3{font-size:1.4rem;margin-bottom:4px}
+.profile-card .role{color:var(--yellow);font-size:.9rem;letter-spacing:2px}
+.change-pass-box{margin:20px 0}
+.change-pass-box h3{margin-bottom:10px;color:var(--yellow)}
+.history-card{border-left:3px solid var(--cyan)}
+footer{text-align:center;padding:30px;color:#555;font-size:.85rem;border-top:1px solid var(--border);margin-top:40px}
+.toast{position:fixed;bottom:30px;left:50%;transform:translate(-50%,100px);background:linear-gradient(135deg,var(--pink),var(--purple));padding:14px 24px;border-radius:12px;font-weight:600;z-index:999;opacity:0;transition:.3s;box-shadow:0 10px 30px #8338ec88}
+.toast.show{transform:translate(-50%,0);opacity:1}
+.small{font-size:.75rem;color:#666}
+@media(max-width:600px){header{flex-direction:column;align-items:flex-start}nav{width:100%}.nav-btn{flex:1;text-align:center}.hero{padding:30px 20px}.hero h2{font-size:1.5rem}}
+</style>
+</head>
+<body>
+<div class="bg-glow"></div>
+
+<header>
+  <div class="logo">
+    <span class="logo-icon">⚡</span>
+    <div><h1>SAMM X MODZ</h1><small>VIP STORE</small></div>
+  </div>
+  <nav>
+    <button class="nav-btn active" data-tab="home">🏠 Trang chủ</button>
+    <button class="nav-btn" data-tab="history">📜 Lịch sử tải</button>
+    <button class="nav-btn" data-tab="account">👤 Tài khoản</button>
+  </nav>
+</header>
+
+<main>
+  <!-- TAB TRANG CHỦ -->
+  <section id="tab-home" class="tab active">
+    <div class="hero">
+      <h2>🔥 SHOP MOD MENU VIP</h2>
+      <p>Tải xuống bản mod chất lượng cao — Miễn phí — Nhanh chóng</p>
+      <input type="text" id="searchBox" placeholder="🔍 Tìm kiếm file..." class="search">
+    </div>
+    <div id="fileList" class="grid"></div>
+  </section>
+
+  <!-- TAB LỊCH SỬ -->
+  <section id="tab-history" class="tab">
+    <h2 class="section-title">📜 Lịch sử tải file</h2>
+    <button class="btn-danger" onclick="clearHistory()">🗑 Xóa toàn bộ lịch sử</button>
+    <div id="historyList" class="grid" style="margin-top:20px"></div>
+  </section>
+
+  <!-- TAB TÀI KHOẢN -->
+  <section id="tab-account" class="tab">
+    <h2 class="section-title">👤 Tài khoản của tôi</h2>
+
+    <div id="loginBox" class="auth-box">
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-auth="login">Đăng nhập</button>
+        <button class="auth-tab" data-auth="register">Đăng ký</button>
+      </div>
+      <form id="loginForm" class="auth-form active">
+        <label>Tên đăng nhập</label>
+        <input type="text" name="username" placeholder="Nhập tên tài khoản" required>
+        <label>Mật khẩu</label>
+        <input type="password" name="password" placeholder="Nhập mật khẩu" required>
+        <button type="submit" class="btn-main">🔓 Đăng nhập</button>
+        <p class="auth-msg" id="loginMsg"></p>
+      </form>
+      <form id="registerForm" class="auth-form">
+        <label>Tên đăng nhập mới</label>
+        <input type="text" name="username" placeholder="Tên tài khoản" required>
+        <label>Mật khẩu</label>
+        <input type="password" name="password" placeholder="Mật khẩu (≥4 ký tự)" required>
+        <button type="submit" class="btn-main">✨ Đăng ký</button>
+        <p class="auth-msg" id="regMsg"></p>
+      </form>
+    </div>
+
+    <div id="profileBox" class="profile-box" style="display:none">
+      <div class="profile-card">
+        <div class="avatar">👤</div>
+        <h3 id="profileName">username</h3>
+        <p class="role" id="profileRole">user</p>
+      </div>
+      <div class="change-pass-box">
+        <h3>🔒 Đổi mật khẩu</h3>
+        <form id="changePassForm">
+          <label>Mật khẩu cũ</label>
+          <input type="password" name="oldPassword" required>
+          <label>Mật khẩu mới</label>
+          <input type="password" name="newPassword" required>
+          <label>Nhập lại mật khẩu mới</label>
+          <input type="password" name="confirmPassword" required>
+          <button type="submit" class="btn-main">💾 Cập nhật mật khẩu</button>
+          <p class="auth-msg" id="passMsg"></p>
+        </form>
+      </div>
+      <button class="btn-danger" onclick="logout()" style="width:100%">🚪 Đăng xuất</button>
+    </div>
+  </section>
+</main>
+
+<footer>© 2025 SHOP SAMM X MODZ VIP — Made with 💜</footer>
+
+<script>
+let currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+let allFiles = [];
+
+/* TAB SWITCHER */
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    if (btn.dataset.tab === 'history') loadHistory();
+    if (btn.dataset.tab === 'account') renderAccount();
+  };
+});
+
+/* LOAD FILES */
+async function loadFiles() {
+  const res = await fetch('/api/files');
+  allFiles = await res.json();
+  renderFiles(allFiles);
+}
+
+function renderFiles(files) {
+  const list = document.getElementById('fileList');
+  if (!files.length) { list.innerHTML = '<p class="empty">Chưa có file nào 😢</p>'; return; }
+  list.innerHTML = files.map(f => `
+    <div class="card">
+      ${f.imageUrl ? `<img src="${f.imageUrl}" alt="${f.name}">` : `<div class="noimg">📦</div>`}
+      <div class="card-body">
+        <h3>${f.name}</h3>
+        <p>${f.description || 'Không có mô tả'}</p>
+        <div class="card-meta"><span>⬇ ${f.downloads || 0} lượt tải</span></div>
+        <button class="btn-main" onclick="downloadFile(${f.id}, '${f.name.replace(/'/g,"\\'")}', '${f.fileUrl}')">⬇ TẢI XUỐNG</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* SEARCH */
+document.getElementById('searchBox').addEventListener('input', e => {
+  const q = e.target.value.toLowerCase();
+  renderFiles(allFiles.filter(f => f.name.toLowerCase().includes(q) || (f.description||'').toLowerCase().includes(q)));
+});
+
+/* DOWNLOAD */
+async function downloadFile(id, name, url) {
+  const history = JSON.parse(localStorage.getItem('downloadHistory') || '[]');
+  history.unshift({ id, name, url, time: Date.now(), user: currentUser?.username || 'khách' });
+  if (history.length > 100) history.pop();
+  localStorage.setItem('downloadHistory', JSON.stringify(history));
+  fetch('/api/files/' + id + '/download', { method: 'POST' });
+  const a = document.createElement('a');
+  a.href = url; a.download = name; a.click();
+  showToast('✅ Đã thêm vào lịch sử tải!');
+}
+
+/* HISTORY */
+function loadHistory() {
+  const history = JSON.parse(localStorage.getItem('downloadHistory') || '[]');
+  const list = document.getElementById('historyList');
+  if (!history.length) { list.innerHTML = '<p class="empty">Chưa có lịch sử tải file 📭</p>'; return; }
+  list.innerHTML = history.map(h => `
+    <div class="card history-card">
+      <div class="card-body">
+        <h3>📄 ${h.name}</h3>
+        <p>🕒 ${new Date(h.time).toLocaleString('vi-VN')}</p>
+        <p class="small">👤 ${h.user}</p>
+        <a href="${h.url}" download class="btn-main" style="display:inline-block;margin-top:10px">⬇ Tải lại</a>
+      </div>
+    </div>
+  `).join('');
+}
+
+function clearHistory() {
+  if (confirm('Xóa toàn bộ lịch sử tải?')) {
+    localStorage.removeItem('downloadHistory');
+    loadHistory();
+    showToast('🗑 Đã xóa lịch sử');
+  }
+}
+
+/* ACCOUNT */
+function renderAccount() {
+  if (currentUser) {
+    document.getElementById('loginBox').style.display = 'none';
+    document.getElementById('profileBox').style.display = 'block';
+    document.getElementById('profileName').textContent = currentUser.username;
+    document.getElementById('profileRole').textContent = currentUser.role === 'admin' ? '👑 ADMIN' : '👤 USER';
+  } else {
+    document.getElementById('loginBox').style.display = 'block';
+    document.getElementById('profileBox').style.display = 'none';
+  }
+}
+
+document.querySelectorAll('.auth-tab').forEach(t => {
+  t.onclick = () => {
+    document.querySelectorAll('.auth-tab').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.auth-form').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById(t.dataset.auth + 'Form').classList.add('active');
+  };
+});
+
+document.getElementById('loginForm').onsubmit = async e => {
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  const res = await fetch('/api/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username: fd.get('username'), password: fd.get('password') })
+  });
+  const data = await res.json();
+  if (data.ok) {
+    currentUser = { username: data.username, role: data.role };
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    renderAccount();
+    showToast('✅ Đăng nhập thành công!');
+    e.target.reset();
+  } else {
+    document.getElementById('loginMsg').textContent = '❌ ' + data.error;
+  }
+};
+
+document.getElementById('registerForm').onsubmit = async e => {
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  const res = await fetch('/api/register', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username: fd.get('username'), password: fd.get('password') })
+  });
+  const data = await res.json();
+  if (data.ok) {
+    document.getElementById('regMsg').textContent = '✅ Đăng ký thành công! Hãy đăng nhập.';
+    e.target.reset();
+  } else {
+    document.getElementById('regMsg').textContent = '❌ ' + data.error;
+  }
+};
+
+document.getElementById('changePassForm').onsubmit = async e => {
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  if (fd.get('newPassword') !== fd.get('confirmPassword')) {
+    document.getElementById('passMsg').textContent = '❌ Mật khẩu nhập lại không khớp!';
+    return;
+  }
+  const res = await fetch('/api/change-password', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      username: currentUser.username,
+      oldPassword: fd.get('oldPassword'),
+      newPassword: fd.get('newPassword')
+    })
+  });
+  const data = await res.json();
+  if (data.ok) {
+    document.getElementById('passMsg').textContent = '✅ Đổi mật khẩu thành công!';
+    showToast('🔒 Đã đổi mật khẩu');
+    e.target.reset();
+  } else {
+    document.getElementById('passMsg').textContent = '❌ ' + data.error;
+  }
+};
+
+function logout() {
+  currentUser = null;
+  localStorage.removeItem('currentUser');
+  renderAccount();
+  showToast('👋 Đã đăng xuất');
+}
+
+/* TOAST */
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.classList.add('show'), 50);
+  setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 300); }, 2500);
+}
+
+/* INIT */
+loadFiles();
+renderAccount();
+</script>
+</body>
+</html>
